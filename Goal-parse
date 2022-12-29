@@ -1,0 +1,21 @@
+class Solution:
+    def interpret(self, command: str) -> str:
+        c = 0
+        res = ""
+
+
+        while c <= len(command)-1 :
+            if command[c] == "G":
+                res += "G"
+                c += 1
+
+            else:
+                if command[c + 1] == "a":
+                    res += "al"
+                    c += 4
+
+                elif command[c + 1] == ")":
+                    res += "o"
+                    c += 2
+            
+        return res
