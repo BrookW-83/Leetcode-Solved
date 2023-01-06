@@ -1,0 +1,19 @@
+class Solution:
+    def sumEvenAfterQueries(self, nums: List[int], queries: List[List[int]]) -> List[int]:
+        evenSum = 0
+        for i in range(0, len(nums)):
+            if nums[i] % 2 == 0:
+                evenSum += nums[i]
+
+        for i in range(len(queries )):
+            val, id = queries[i]
+
+            if nums[id] % 2 == 0:
+                evenSum -= nums[id]
+            nums[id] += val
+
+            if nums[id] % 2 == 0:
+                evenSum += nums[id]
+            queries [i] = evenSum
+            
+        return queries 
