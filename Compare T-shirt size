@@ -1,0 +1,29 @@
+n = int(input())
+for i in range ( n):
+    Map = {'S':1, 'M':2, 'L':3}
+    s1, s2 = input().split()
+ 
+    if Map[s1[-1]] < Map[s2[-1]]:
+        print("<")
+ 
+    elif Map[s1[-1]] > Map[s2[-1]]:
+        print(">")
+        
+    else:
+        if s1[-1] == 'S':
+            if len(s1) < len(s2):
+                print(">")
+ 
+            elif len(s1) > len(s2):
+                print("<")
+            else:
+                print("=")
+        elif s1[-1] == 'L':
+            if len(s1) > len(s2):
+                print(">")
+            elif len(s1) < len(s2):
+                print("<")
+            else:
+                print("=")
+        else:
+            print("=")
