@@ -1,0 +1,19 @@
+class Solution:
+    def printVertically(self, s: str) -> List[str]:
+        
+        
+        string = s.split()
+        maxLength = len(max(string, key= len))
+        
+        for ind, word in enumerate(string):
+            string[ind] += (" "  * (maxLength -  len(word)))
+        
+        answer = [""] *maxLength
+
+        for i in range(maxLength):
+            for j in range(len(string)):
+                answer[i] += string[j][i]
+
+        for ind, word in enumerate(answer):
+            answer [ind] = answer[ind].rstrip()
+        return answer
