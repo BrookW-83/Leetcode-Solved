@@ -1,0 +1,35 @@
+class Solution:
+    def complexNumberMultiply(self, num1: str, num2: str) -> str:
+        # split num1 && num2 to real and imaginary
+        #res1 = num1[real] * num2[real]
+        #res2 = num1[imaginary] * num2[imaginary]
+        #res3 = num1[real] * num2[imaginary]
+        #res4 = num1[imaginary] * num2[real]
+
+        #answer = (res1 - res2) + (res3 + res4)*i
+        #r - real , i - imaginary
+
+        for i in num1:
+            r1, i1 = num1.split("+")
+            r1 = int(r1)
+            i1 = i1[0:-1]
+            i1 = int(i1)
+
+        for i in num2:
+            r2, i2 = num2.split("+")
+            r2 = int(r2)
+            i2 = int(i2[0:-1])
+            i2 = int(i2)     
+
+        answer = ""
+        realSum = (r1*r2) - (i1*i2)
+        realSum = str(realSum)
+        imaginarySum = (r1*i2) + (r2*i1)
+        imaginarySum = str(imaginarySum)
+
+        answer += realSum
+        answer += "+"
+        answer += imaginarySum
+        answer += "i"
+
+        return answer
