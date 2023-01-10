@@ -1,0 +1,34 @@
+class Solution:
+
+    def storeDomain(self, value, domain, domain_dict):
+        # name.adress.com,  adress.com, .com
+        
+        split_domain = domain.split(".")
+        print(split_domain)
+        for i in range(len(split_domain)):
+            d = ".".join(split_domain[i:])
+
+            if d not in domain_dict:
+                domain_dict[d] = value
+            else:
+                domain_dict[d] += value
+
+        print(domain_dict)
+
+    def splitDomain(self, cpdomains):
+        domain_dict = {}
+
+        for items in cpdomains:
+            value, domain = items.split(" ")
+            value = int(value)
+            # print(value)
+            process_dict = self.storeDomain(value, domain, domain_dict)
+
+        Domains = []
+        for sth in domain_dict:
+            Domains.append( str(domain_dict[sth])+ " "+sth)
+
+        return Domains
+
+    def subdomainVisits(self, cpdomains: List[str]) -> List[str]:
+        return self.splitDomain(cpdomains)
