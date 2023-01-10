@@ -1,0 +1,14 @@
+class Solution:
+    def sumOfThree(self, num: int) -> List[int]:
+        
+        answer = []
+
+        if num % 3 == 0:
+            x = num // 3
+            answer.append(x - 1)
+            answer.append(x)
+            answer.append(x + 1)
+        return answer
+
+        if num % 3 != 0:
+            return answer
