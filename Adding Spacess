@@ -1,0 +1,11 @@
+class Solution:
+    def addSpaces(self, s: str, spaces: List[int]) -> str:
+        answer = []
+        indexs = set(spaces)
+
+        for i, c in enumerate(s):
+            if i in indexs:
+                answer.append(" ")
+            answer.append(c)
+
+        return "".join(answer)
