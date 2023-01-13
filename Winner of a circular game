@@ -1,0 +1,17 @@
+class Solution:
+    def findTheWinner(self, n: int, k: int) -> int:
+        """
+        creat an array with the numbers
+        trasvers throuht the array circulary
+        """
+        nums = []
+        for i in range(1,n+ 1):
+            nums .append(i)
+        nums = list(nums)
+
+        i = 0
+        while len(nums) > 1:
+            i = (i + k - 1) % len(nums)
+            nums.remove(nums[i])
+
+        return nums[0]
