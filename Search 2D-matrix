@@ -1,0 +1,11 @@
+class Solution:
+    def searchMatrix(self, matrix: List[List[int]], target: int) -> bool:
+        """
+        if matrix[i][-1] > target:
+            find target in matrix[i]:   
+        """
+        for row in matrix:
+            if row[-1] >= target:
+                return target in row
+                
+        return False
