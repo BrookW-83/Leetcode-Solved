@@ -1,0 +1,18 @@
+class Solution:
+    def matrixReshape(self, mat: List[List[int]], r: int, c: int) -> List[List[int]]:
+        #creat a new matrix size of  r*c
+        #append the elemnts in orginal matrix to new matrix
+
+        mat_flat = []
+        newMat = []
+        for i in range(len(mat)):
+            for j in range(len(mat)):
+                mat_flat.append(mat[i][j])
+
+        if len(mat_flat) != r*c:
+            return mat
+        
+        else:
+            for index in range(r):
+                newMat.append(mat_flat[ index*c : index*c + c ])
+            return newMat
