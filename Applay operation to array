@@ -1,0 +1,19 @@
+class Solution:
+    def applyOperations(self, nums: List[int]) -> List[int]:
+        answer = [] 
+
+
+        for index in range(len(nums)-1):
+            if nums[index] == nums[index+1]:
+                nums[index] = nums[index]*2
+                nums[index+1] = 0
+
+        for index in range(len(nums)):
+            if nums[index] != 0:
+                answer.append(nums[index])
+
+        zero_count = len(nums) - len(answer)
+        for index in range(zero_count):
+            answer.append(0)
+
+        return answe
