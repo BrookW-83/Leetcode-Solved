@@ -1,0 +1,37 @@
+class Solution:
+    def removeComments(self, source: List[str]) -> List[str]:
+        checker = False
+        source_code = []
+        code = []
+
+        for line in source:
+            i  = 0
+            while i < len(line):
+                char = line[i]
+
+                #check if its a line commnet
+                if not checker and line[i:i+2] == '//':
+                    i = len(line)
+
+                #check if its the start of mulltiline comment
+                elif  not checker and line[i:i+2] == '/*':
+                    checker = True
+                    i += 2
+
+                elif checker and line[i:i+2] == '*/':
+                    checker = False
+                    i += 2
+
+                elif checker:
+                    i += 1
+
+                else:
+                    source_code.append(char)
+                    i += 1
+
+            if source_code and not checker:
+                code.append("".join(source_code))
+                source_code = []
+
+            
+        return code
