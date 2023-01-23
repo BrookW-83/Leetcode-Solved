@@ -1,0 +1,23 @@
+class Solution:
+    def equalPairs(self, grid: List[List[int]]) -> int:
+
+        counter = 0
+        column_matrix = []
+
+        for index in range(len(grid)):
+            c = []
+
+            for i in range(len(grid)):
+                for j in range(len(grid[i])):
+                    if j == index:
+                        c.append(grid[i][j])
+
+            column_matrix.append(c)
+            c = []
+  
+        for index in range(len(grid)):
+            for index2 in range(len(column_matrix)):
+                if grid[index] == column_matrix[index2]:
+                    counter += 1
+
+        return counter
