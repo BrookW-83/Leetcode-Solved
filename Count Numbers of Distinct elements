@@ -1,0 +1,14 @@
+class Solution:
+    def countDistinctIntegers(self, nums: List[int]) -> int:
+        unique_arr = []
+        tmp = []
+        def my_function(x):
+            return x[::-1]
+
+        for i  in nums:
+            mytxt = my_function(str(i))
+            tmp.append(int(mytxt))
+        
+    
+
+        return (len(set(nums+tmp)))
