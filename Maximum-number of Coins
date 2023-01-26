@@ -1,0 +1,25 @@
+class Solution:
+    def maxCoins(self, piles: List[int]) -> int:
+        
+        #sort the array
+        #make an array from, the last two elements and one elemnt from the start
+
+        piles.sort()
+        pile = []
+        Coins = 0
+        left, right = 0, len(piles)-1
+
+        while left < right:
+            pile.append(piles[left])
+            pile.append(piles[right-1])
+            pile.append(piles[right])
+            left += 1
+            right -= 2
+        #print(pile)
+        i = 1
+        while i < len(pile)-1:
+            Coins += pile[i]
+            i += 3
+            
+   
+        return Coins
