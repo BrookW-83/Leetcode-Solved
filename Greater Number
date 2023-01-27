@@ -1,0 +1,13 @@
+class Solution(object):
+    def smallerNumbersThanCurrent(self, nums: List[int]) -> List[int]:
+        
+        sortednums = sorted(nums)
+        order = {}
+        result = []
+    
+        for i in range(len(sortednums)):
+            if sortednums[i] not in order:
+                    order[sortednums[i]] = i
+        for i in nums:
+            result.append(order[i])
+        return result
