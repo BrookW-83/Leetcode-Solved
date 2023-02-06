@@ -1,0 +1,19 @@
+class Solution:
+    def partitionLabels(self, s: str) -> List[int]:
+        Lastpostion = {}
+
+        for i, c in enumerate(s):
+            Lastpostion[c] = i
+
+
+        size, end_postion = 0, 0
+        partition = []
+        for index, char in enumerate(s):
+            size += 1
+            end_postion = max(end_postion, Lastpostion[char])
+
+            if index == end_postion:
+                partition.append(size)
+                size = 0
+        
+        return(partition)
