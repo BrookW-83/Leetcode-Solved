@@ -1,0 +1,16 @@
+class Solution:
+    def countPairs(self, deliciousness: List[int]) -> int:
+        counter = collections.Counter()
+        MOD = 10**9 + 7
+
+        total_sum = 0
+        for i in deliciousness:
+            for j in range(22):
+                target = (1 << j) - i  
+            
+                if target in counter:
+                    total_sum += counter[target]
+
+            counter[i] += 1
+
+        return total_sum % MOD
