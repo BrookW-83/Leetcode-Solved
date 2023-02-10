@@ -1,0 +1,17 @@
+class Solution:
+    def pivotArray(self, nums: List[int], pivot: int) -> List[int]:
+        numbers =[]
+
+        for index in range(len(nums)):
+            if nums[index] < pivot:
+                numbers.append(nums[index])
+
+        for index in range(len(nums)):
+            if nums[index] == pivot:
+                numbers.append(nums[index])
+
+        for index in range(len(nums)):
+            if nums[index] > pivot:
+                numbers.append(nums[index])
+
+        return numbers
