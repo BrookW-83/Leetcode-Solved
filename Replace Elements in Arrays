@@ -1,0 +1,12 @@
+class Solution:
+    def arrayChange(self, nums: List[int], operations: List[List[int]]) -> List[int]:
+        store = {}
+        for i in range(len(nums)):
+            store[nums[i]] = i
+
+        for index in range(len(operations)):
+            a = store.get(operations[index][0]) 
+            nums[a]=operations[index][1]
+            store.pop(operations[index][0])
+            store[operations[index][1]] = a
+        return nums
