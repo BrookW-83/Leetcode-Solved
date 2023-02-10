@@ -1,0 +1,56 @@
+class Solution:
+    def validTicTacToe(self, board: List[str]) -> bool:
+        tick_tack = "".join(board)
+        count_o = 0
+        count_x = 0
+
+        for char in tick_tack:
+            if char == "X":
+                count_x += 1
+
+            elif char == "O":
+                count_o += 1
+            
+            else:
+                continue
+
+    
+        if abs(count_x-count_o)<=1 and count_x>=1 and count_x>=count_o:
+            mat=[[i for i in board[0]],[i for i in board[1]],[i for i in board[2]]]
+
+            def find(s):
+                count=0
+                if mat[0][0]+mat[0][1]+mat[0][2]==s:
+                    count+=1
+                if mat[0][0]+mat[1][0]+mat[2][0]==s:
+                    count+=1
+                if mat[2][0]+mat[2][1]+mat[2][2]==s:
+                    count+=1
+                if mat[2][2]+mat[1][2]+mat[0][2]==s:
+                    count+=1
+                if mat[0][0]+mat[1][1]+mat[2][2]==s:
+                    count+=1
+                if mat[1][0]+mat[1][1]+mat[1][2]==s:
+                    count+=1
+                if mat[0][2]+mat[1][1]+mat[2][0]==s:
+                    count+=1
+                
+                return count
+                    
+            s1=find("XXX")
+            s2=find("OOO")
+            
+            if s1>=1 and s2>=1:
+                return False
+            elif s2==0 and s1>=1 and abs(count_x - count_o)==1:
+                return True
+            elif s1==0 and s2>=1 and abs(count_x - count_o)==0:
+                return True
+            elif (abs(count_x - count_o)<=1 and count_x>=1 and s1==0 and s2==0 and count_x >= count_o):
+                return True
+            else:
+                return False          
+        elif count_x+count_o==0:
+            return True
+        else:
+            return False
