@@ -1,0 +1,10 @@
+class Solution:
+    def judgeSquareSum(self, c: int) -> bool:
+        posssible_value = int(sqrt(c))
+
+        for a in range(posssible_value + 1):
+            b = sqrt(c - (a * a))
+            if b == int(b):
+                 return True
+
+        return False
