@@ -1,0 +1,18 @@
+class Solution:
+    def matchPlayersAndTrainers(self, players: List[int], trainers: List[int]) -> int:
+        counter = 0
+        i, j = 0, 0
+
+        players.sort()
+        trainers.sort()
+
+        while i < len(players) and j < len(trainers):
+            if players[i] > trainers[j]:
+                j += 1
+
+            elif players[i] <= trainers[j]:
+                counter += 1
+                i += 1
+                j += 1
+
+        return counter 
