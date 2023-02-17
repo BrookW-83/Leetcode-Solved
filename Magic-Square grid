@@ -1,0 +1,46 @@
+class Solution:
+    def numMagicSquaresInside(self, grid: List[List[int]]) -> int:
+        def is_magic_square(subgrid):
+            #creat a list from 3x3 sub-grid
+            list_subgrid = [i for row in subgrid for i in row]
+
+            list_subgrid.sort()
+            if list_subgrid != [num for num in range(1, 10)]:
+                return False
+
+          
+            magic_sum = sum(subgrid[0])
+            #check sum of row
+            for row in subgrid:
+                if sum(row) != magic_sum:
+                    return False
+
+            #check sum of column
+            col1 = [row[0] for row in subgrid]
+            col2 = [row[1] for row in subgrid]
+            col3 = [row[2] for row in subgrid]
+
+            if sum(col1) != magic_sum or sum(col2) != magic_sum or sum(col3) != magic_sum:
+                return False
+
+            #check sum of diagonals
+            diagonal_sum1 = sum([subgrid[i][i] for i in range(3)])
+            diagonal_sum2 = sum([subgrid[i][2 - i] for i in range(3)])
+            if diagonal_sum1 != magic_sum or diagonal_sum2 != magic_sum:
+                return False
+
+            return True
+        # if true count number of magic_squares
+        counter = 0
+
+        row = len(grid)
+        col = len(grid[0])
+
+        for r in range(row - 2):
+            for c in range(col - 2):
+                sub_grid = [grid [r][c:c+3], grid[r+1][c:c+3], grid[r+2][c:c+3]]
+
+                if is_magic_square(sub_grid):
+                    counter += 1
+
+        return counter
