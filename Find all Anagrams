@@ -1,0 +1,43 @@
+class Solution:
+    def findAnagrams(self, s: str, p: str) -> List[int]:
+        if len(p) > len(s):
+            return []
+        p_count = Counter(p)
+        valid = 0
+        left, right = 0, 0
+        s_count = Counter(s[:len(p)])
+    
+        arr = []
+        for elemnt in s_count:
+            if p_count[elemnt] == s_count[elemnt]:
+                valid += 1
+        if valid == len(p_count):
+            arr.append(left)
+        def add(val, validity):
+            if val in p_count:
+                s_count[val] += 1
+                if s_count[val]-1 == p_count[val]:
+                    validity -= 1
+                elif s_count[val] == p_count[val]:
+                    validity += 1
+            return validity
+
+        def remove(val, validity):
+            if val in p_count:
+                s_count[val] -= 1
+                if s_count[val]+1 == p_count[val]:
+                    validity -= 1
+                elif s_count[val] == p_count[val]:
+                    validity += 1
+
+            return validity
+        for right in range(len(p), len(s)):
+
+            valid=add(s[right],valid)
+            valid=remove(s[left], valid)
+            left += 1
+            if valid == len(p_count):
+                arr.append(left)   
+            
+            right += 1
+        return arr
