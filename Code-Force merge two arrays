@@ -1,0 +1,21 @@
+n, t = map(int, input().split())
+nums1 = list(map(int, input().split()))
+nums2 = list(map(int, input().split()))
+ 
+p1, p2 = 0, 0
+arr = []
+ 
+while p1 < n and p2 < t:
+    
+    if nums1[p1] <= nums2[p2]:
+        arr.append(nums1[p1])
+        p1 += 1
+        
+    else:
+        arr.append(nums2[p2])
+        p2 += 1
+        
+arr.extend(nums1[p1:])
+arr.extend(nums2[p2:])
+ 
+print(*arr)
