@@ -1,0 +1,16 @@
+class Solution:
+    def subarraysDivByK(self, nums: List[int], k: int) -> int:
+        freq = Counter()
+        freq[0] = 1
+        count = 0
+
+        #calclating running sum
+        runnSum = 0
+        for i in range(len(nums)):
+            runnSum  += nums[i]
+            #check if runnSum % k in Counter
+            rem = runnSum % k
+            count += freq[rem]
+            freq[rem] += 1
+
+        return count
