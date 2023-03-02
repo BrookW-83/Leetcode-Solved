@@ -1,0 +1,18 @@
+class Solution:
+    def subarraySum(self, nums: List[int], k: int) -> int:
+        store = collections.defaultdict(int)
+        store[0] = 1
+
+        #do a running sum and check if runningsum-k in dictionary
+        runnSum = 0
+        count = 0
+        for i in range(len(nums)):
+            runnSum += nums[i]
+            key = (runnSum - k)
+
+            if store[key]:
+                count += store[key] 
+            #if collection is in dict, set new value for it 
+            store[runnSum] += 1
+
+        return count
