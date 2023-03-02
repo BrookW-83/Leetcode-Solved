@@ -1,0 +1,19 @@
+class Solution:
+    def myPow(self, x: float, n: int) -> float:
+        def exponent(x, n):
+            if x == 0:
+                return 0
+            if n == 0:
+                return 1
+            Power = exponent(x, n // 2)
+            Power = Power * Power
+            if n % 2 == 0:
+                return Power
+            else:
+                return x * Power
+
+        Power = exponent(x, abs(n))
+        if n > 0:
+            return Power
+        else:
+            return 1 / Power
