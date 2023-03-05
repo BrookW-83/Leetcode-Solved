@@ -1,0 +1,24 @@
+
+class Solution:
+    def totalFruit(self, fruits: List[int]) -> int:
+        store = collections.defaultdict(int)
+
+        left = 0
+        total_count = 0
+        maxPics = 0
+
+        for right in range(len(fruits)):
+            store[fruits[right]] += 1
+            total_count += 1
+
+            while len(store) > 2:
+                f = fruits[left]
+                store[f] -= 1
+                total_count -= 1
+                left += 1
+                if not store[f]:
+                    store.pop(f)
+
+            maxPics = max(maxPics, total_count)
+
+        return maxPics
