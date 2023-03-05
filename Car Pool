@@ -1,0 +1,17 @@
+class Solution:
+    def carPooling(self, trips: List[List[int]], capacity: int) -> bool:
+        rides = [0] * 1001
+
+        for riders, st, end in trips:
+            if riders > capacity:
+                return False
+            rides[st] += riders
+            rides[end] -= riders
+
+        #do a prifix sum on rides array
+        for i in range(1, len(rides)):
+            rides[i] += rides[i - 1]
+            if rides[i] > capacity:
+                return False
+
+        return True
