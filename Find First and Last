@@ -1,0 +1,12 @@
+class Solution:
+    def searchRange(self, nums: List[int], target: int) -> List[int]:
+        freq = Counter(nums)
+
+        postion = [-1, -1]
+        for i in range(len(nums)):
+            if nums[i] == target:
+                postion[0] = i
+                postion[1] = i + freq[nums[i]] - 1
+                break
+
+        return postion
