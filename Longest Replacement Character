@@ -1,0 +1,18 @@
+class Solution:
+    def characterReplacement(self, s: str, k: int) -> int:
+        count = 0
+        maxLength = 0
+        #count the frequency of s
+        freq = Counter()
+
+        for i in range(len(s)):
+            freq[s[i]] += 1
+            count = max(count, freq[s[i]])
+
+            if maxLength - count >= k:
+                freq[s[i - maxLength]] -= 1
+
+            else:
+                maxLength += 1
+
+        return maxLength
