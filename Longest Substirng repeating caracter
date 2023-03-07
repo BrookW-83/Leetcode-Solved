@@ -1,0 +1,16 @@
+class Solution:
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        l = 0
+        count = 0
+        sub_string = {}
+        
+        for r in range(0,len(s)):
+            if s[r] not in sub_string:
+                count = max(count, r-l+1)
+            else:
+                if sub_string[s[r]] < l:
+                    count =  max(count, r-l+1)
+                else:
+                    l = sub_string[s[r]]+1
+            sub_string[s[r]]=r
+        return count
