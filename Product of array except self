@@ -1,0 +1,29 @@
+class Solution:
+    def productExceptSelf(self, nums: List[int]) -> List[int]:
+        """
+        res = [1,1,1,1]
+        prefix =1
+        postfix= 1
+        
+        for i in range (o,nums)
+        res = prefix[i]
+        prefix *= nums[i]
+        
+        for j in range (nums-1-1-1) in reverse order
+        res = res[i] *postfix
+        postfix *=nums[j]
+        
+        """
+        
+        res = [1]*len(nums)
+        preFix,postFix = 1,1
+        
+        for i in range (0,len(nums)):
+            res[i] = preFix
+            preFix *= nums[i]
+            
+        for j in range (len(nums)-1,-1,-1):
+            res[j] = res[j]*postFix
+            postFix *= nums[j]
+            
+        return res
