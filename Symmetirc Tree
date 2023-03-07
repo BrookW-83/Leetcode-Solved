@@ -1,0 +1,20 @@
+#         self.right = right
+class Solution:
+    def isSymmetric(self, root: Optional[TreeNode]) -> bool:
+        if root == None:
+            return Fasle
+
+        return self.isMirror(root.left, root.right)
+
+
+    def isMirror(self, leftTree, rightTree):
+        if leftTree == None and rightTree == None:
+            return True
+        
+        if leftTree == None or rightTree == None:
+            return False
+
+        if leftTree.val != rightTree.val:
+            return False
+
+        return self.isMirror(leftTree.left, rightTree.right) and self.isMirror(leftTree.right, rightTree.left)
