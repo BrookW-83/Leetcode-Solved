@@ -1,0 +1,34 @@
+class Solution:
+    def shipWithinDays(self, weights: List[int], days: int) -> int:
+        low = 0
+        high = 0
+        for i in weights:
+            low = max(low, i)
+            high += i
+            
+        answer = high
+        while low <= high:
+
+            mid = (low + high) // 2
+            if self.checkWeight(weights, days, mid):
+                answer = mid
+                high = mid - 1
+            else:
+                low = mid + 1
+             
+        return answer
+
+    def checkWeight(self, weights: List[int], days: int, capacity: int) -> bool:
+
+        currSum = 0
+        currDay = 1
+
+        for c in weights:
+            if currSum + c > capacity:
+                currDay += 1
+                currSum = 0
+            currSum += c
+
+        if currDay > days:
+            return False
+        return True
