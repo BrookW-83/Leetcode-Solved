@@ -1,0 +1,19 @@
+class Solution:
+    def combine(self, n: int, k: int) -> List[List[int]]:
+        self.allcombinations = []
+
+        def helper(curr, i, n, k):
+            if len(curr) == k:
+                self.allcombinations.append(curr.copy())
+                return
+
+            if i > n:
+                return
+
+            for j in range(i, n+1):
+                curr.append(j)
+                helper(curr, j+1, n, k)
+                curr.pop()
+        helper([], 1, n, k)
+
+        return self.allcombinations
