@@ -1,0 +1,19 @@
+class Solution:
+    def distributeCookies(self, cookies: List[int], k: int) -> int:
+        self.res = float("inf")
+        pieces = [0] * k
+
+        def backTrack(idx):
+            if idx >= len(cookies):
+                self.res = min(self.res, max(pieces))
+                return
+       
+            for j in range(k):
+                pieces[j] += cookies[idx]
+                if pieces[j] < self.res:
+                    backTrack(idx + 1)
+                pieces[j] -= cookies[idx]
+
+        backTrack(0)
+
+        return self.res
