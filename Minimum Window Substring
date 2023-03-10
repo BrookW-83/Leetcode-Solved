@@ -1,0 +1,31 @@
+class Solution:
+    def minWindow(self, s: str, t: str) -> str:
+        #count frequencey of t
+        freq = Counter(t)
+
+        #iterate to find minumum window
+        left = 0
+        count = len(freq)
+        interval = [0, 0]
+        minSize = len(s) + 1
+        for right in range(len(s)):
+            if s[right] in freq:
+                freq[s[right]] -= 1
+                if freq[s[right]] == 0:
+                    count -= 1
+            #check validity
+            while count == 0:
+                if minSize > (right - left +1):
+                    minSize =  (right - left + 1)
+                    interval[0] = left
+                    interval[1] = right + 1
+                if s[left] in freq:
+                    freq[s[left]] += 1
+                    if freq[s[left]] > 0:
+                        count += 1
+                        
+                left += 1
+
+        if minSize > len(s):
+            return ""
+        return s[interval[0]:interval[1]]
