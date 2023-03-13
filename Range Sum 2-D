@@ -1,0 +1,23 @@
+class NumMatrix:
+
+    def __init__(self, matrix: List[List[int]]):
+        row, col = len(matrix), len(matrix[0])
+        self.rangeSum = [[0] * (col + 1)for r in range (row + 1)]
+
+        for r in range(row):
+            prefixsum = 0
+            for c in range(col):
+                prefixsum += matrix[r][c]
+                above = self.rangeSum[r][c + 1]
+
+                self.rangeSum[r + 1][c + 1] = prefixsum + above      
+
+    def sumRegion(self, row1: int, col1: int, row2: int, col2: int) -> int:
+        row1 , col1, row2, col2 = row1 + 1, col1 + 1, row2 + 1, col2 + 1
+
+        region = self.rangeSum[row2][col2]
+        top = self.rangeSum[row1 - 1][col2]
+        left = self.rangeSum[row2][col1 - 1]
+        section = self.rangeSum[row1 - 1][col1 - 1]
+
+        return region - top - left + section  
