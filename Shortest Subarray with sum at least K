@@ -1,0 +1,25 @@
+class Solution:
+    def shortestSubarray(self, nums: List[int], k: int) -> int:
+        if len(nums) == 1:
+            if nums[0] == k:
+                return 1
+            return -1
+
+        preFix = [0] 
+
+        for i in range(len(nums)):
+            preFix.append(preFix[- 1] + nums[i] ) 
+
+        minSize = len(nums) + 1
+        inc_q = collections.deque()
+
+        for i, num in enumerate(preFix):
+            while inc_q and num <= preFix[inc_q[-1]]:
+                inc_q.pop()
+
+            while inc_q and num - preFix[inc_q[0]] >= k:
+                minSize = min(minSize, i - inc_q.popleft()) 
+
+            inc_q.append(i)
+
+        return minSize  if minSize != len(nums) + 1  else -1
