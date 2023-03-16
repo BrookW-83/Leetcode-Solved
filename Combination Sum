@@ -1,0 +1,21 @@
+class Solution:
+    def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
+        self.allcombinationSum = []
+
+        def search(candidates, curr,  i, n, target):
+            currSum = sum(curr)
+            if currSum == target:
+                self.allcombinationSum.append(curr.copy())
+                return
+
+            if currSum > target or i > n:
+                return 
+
+            for j in range(i, n):
+                curr.append(candidates[j])
+                search(candidates, curr, j, n, target)
+                curr.pop()
+
+        search(candidates, [],  0, len(candidates), target)
+
+        return self.allcombinationSum
