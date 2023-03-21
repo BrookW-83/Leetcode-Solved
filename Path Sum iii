@@ -1,0 +1,24 @@
+class Solution:
+    def pathSum(self, root: Optional[TreeNode], targetSum: int) -> int:
+        freq = {}
+        freq[0] = 1
+        self.count = 0
+
+        def pathSum(node,currSum):
+            if not node:
+                return 
+         
+            currSum += node.val
+
+            if (currSum - targetSum ) in freq:
+                self.count += freq[currSum - targetSum]
+                  
+            freq[currSum] = 1 + freq.get(currSum, 0)
+
+            pathSum(node.left, currSum)
+
+            pathSum(node.right, currSum)
+
+            freq[currSum] -= 1
+
+            currSum -= node.val
