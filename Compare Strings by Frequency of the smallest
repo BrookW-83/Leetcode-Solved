@@ -1,0 +1,25 @@
+class Solution:
+    def numSmallerByFrequency(self, queries: List[str], words: List[str]) -> List[int]:
+        #containes frequency of words
+        freq = []
+        for word in  words:
+            freq.append(self.f_search(word))
+        freq.sort()
+        print(freq)
+
+        output = []
+        for q in queries:
+            value = 0
+            f_queries = self.f_search(q)
+
+            for i in range(len(freq)):
+                if freq[i] > f_queries:
+                    value = len(freq) - i
+                    break
+
+            output.append(value)
+
+        return output
+
+    def f_search(self, s):
+        return Counter(s)[min(s)]
