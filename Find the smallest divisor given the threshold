@@ -1,0 +1,25 @@
+class Solution:
+    def smallestDivisor(self, nums: List[int], threshold: int) -> int:
+        low = 1
+        high = max(nums) + 1
+        ans = 0
+
+        def isValid(mid):
+            arr_sum = 0
+
+            for i in nums:
+                arr_sum += ceil(i/ mid)
+
+            return arr_sum <= threshold
+              
+            
+        while low <= high:
+            mid = low + (high - low)//2
+
+            if isValid(mid):
+                high = mid - 1
+                ans = mid
+
+            else:
+                low = mid + 1
+        return ans
