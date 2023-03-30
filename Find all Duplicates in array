@@ -1,0 +1,18 @@
+class Solution:
+    def findDuplicates(self, nums: List[int]) -> List[int]:
+        n = len(nums)
+        i = 0
+
+        while i < n:
+            curr = nums[i]
+            if curr - 1 != i and curr != nums[curr - 1]:
+                nums[i], nums[curr - 1] = nums[curr -1], nums[i]
+            else:
+                i += 1
+
+        arr = []
+        for i in range(n):
+            if nums[i] != i + 1:
+                arr.append(nums[i])
+
+        return arr
