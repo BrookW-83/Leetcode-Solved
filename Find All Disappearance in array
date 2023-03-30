@@ -1,0 +1,16 @@
+class Solution:
+    def findDisappearedNumbers(self, nums: List[int]) -> List[int]:
+        n = len(nums)
+
+        for i in range(n):
+            tmp = nums[i] - 1
+            while nums[i] - 1 != i and nums[i] != nums[tmp]:
+                nums[i], nums[tmp] = nums[tmp], nums[i]
+                tmp = nums[i] - 1
+                
+        arr = []
+        for i in range(n):
+            if nums[i] != i + 1:
+                arr.append(i + 1)
+            
+        return arr
