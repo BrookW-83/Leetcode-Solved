@@ -1,0 +1,17 @@
+class Solution:
+    def findCenter(self, edges: List[List[int]]) -> int:
+        adjList = defaultdict(list)
+        n = len(edges)
+
+        for first, second in edges:
+            adjList[first].append(second)
+            adjList[second].append(second)
+            
+
+        center = 0
+        for key, val in adjList.items():
+            if len(val) == (len(edges)):
+                center = key
+                break
+
+        return center
