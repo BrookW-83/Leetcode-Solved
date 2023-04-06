@@ -1,0 +1,18 @@
+from collections import defaultdict
+
+adjList = defaultdict(list)
+
+n = int(input())
+
+k = int(input())
+
+for _ in range(k):
+    nums = list(map(int, input().split()))
+
+    if nums[0] == 1:
+        adjList[nums[1]].append(nums[2])
+        adjList[nums[2]].append(nums[1])
+
+    else:
+        if len(adjList[nums[1]]) != 0:
+            print(*adjList[nums[1]])
