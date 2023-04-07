@@ -1,0 +1,28 @@
+class Solution:
+    def maxLength(self, arr: List[str]) -> int:
+        strs = set()
+
+        def Unique(strs, s):
+            c = Counter(strs) + Counter(s)
+            return max(c.values()) > 1
+
+
+        def backTrack(i):
+            if i == len(arr):
+                return len(strs)
+
+
+            res = 0
+            if not Unique(strs, arr[i]):
+                for c in arr[i]:
+                    strs.add(c)
+
+                res = backTrack(i + 1)
+
+                for c in arr[i]:
+                    strs.remove(c)
+
+            return max(res, backTrack(i + 1))
+
+
+        return backTrack(0)
