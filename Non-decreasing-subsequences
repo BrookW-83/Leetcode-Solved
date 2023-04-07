@@ -1,0 +1,20 @@
+class Solution:
+    def findSubsequences(self, nums: List[int]) -> List[List[int]]:
+        #base-case :if len(curr) == len(nums), if  nums:
+        #recursive case:check for len(curr),  gt
+        subsequence = set()
+
+
+        def backTrack(nums, i, curr):
+            if len(curr) >= 2:
+                subsequence.add(tuple(curr))
+
+
+            for j in range(i, len(nums)):
+                if not curr or nums[j] >= curr[-1]:
+                    backTrack(nums, j  + 1, curr + [nums[j]])
+        
+
+        backTrack(nums, 0, [])
+
+        return list(subsequence)
