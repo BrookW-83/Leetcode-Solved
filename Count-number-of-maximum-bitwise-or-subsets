@@ -1,0 +1,17 @@
+class Solution:
+    def countMaxOrSubsets(self, nums: List[int]) -> int:
+
+        def dfs (num, val):
+            if maxBit == val:
+                return 1 << (len(nums)-num)
+            if num == len(nums):
+                return 0
+
+            return dfs(num + 1, val|nums[num]) + dfs(num + 1, val)
+
+
+        maxBit = 0
+        for i in nums:
+            maxBit |= i
+
+        return dfs(0, 0)
